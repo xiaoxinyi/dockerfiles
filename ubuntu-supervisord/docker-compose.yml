@@ -1,0 +1,11 @@
+version: '2'
+services:
+  zl-ubuntu-supervisor:
+    image: zl/mysupervisord
+    container_name: zl_ubuntu_supervisor
+    restart: always
+    tty: true
+    privileged: true
+    ports:
+      - "21212:22"
+      - "32320:80"

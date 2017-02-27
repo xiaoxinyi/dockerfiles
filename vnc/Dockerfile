@@ -1,10 +1,9 @@
 # Start with Ubuntu base image
-FROM ubuntu:14.04
+FROM zl/caffe-torch-gpu:12.27
 MAINTAINER Kai Arulkumaran <design@kaixhin.com>
 
 # Install LXDE, VNC server, XRDP and Firefox
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
-  firefox \
   lxde-core \
   lxterminal \
   tightvncserver \
@@ -18,6 +17,8 @@ RUN cat password.txt password.txt | vncpasswd && \
   rm password.txt
 # Expose VNC port
 EXPOSE 5901
+EXPOSE 8888
+EXPOSE 6006
 
 # Set XDRP to use TightVNC port
 RUN sed -i '0,/port=-1/{s/port=-1/port=5901/}' /etc/xrdp/xrdp.ini
