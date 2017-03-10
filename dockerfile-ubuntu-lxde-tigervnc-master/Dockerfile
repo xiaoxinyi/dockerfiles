@@ -1,7 +1,11 @@
 # ubuntu-lxde-tigervnc desktop
 
-FROM  zl/dl-gnome:1.3
+FROM  zl/caffe-torch:3.2.a
 MAINTAINER akyshr "akyshr@gmail.com"
+
+
+ADD resolv.conf /etc/resolv.conf
+ADD sources.list /etc/apt/sources.list
 
 # Set the env variable DEBIAN_FRONTEND to noninteractive
 ENV DEBIAN_FRONTEND noninteractive
@@ -13,7 +17,7 @@ RUN apt-get update
 RUN apt-get install -y openssh-server
 
 # Installing the apps.
-RUN apt-get install -y firefox
+# RUN apt-get install -y firefox
 
 RUN apt-get install -y xserver-xorg fonts-takao-gothic fonts-takao-mincho fonts-takao-pgothic
 
@@ -58,6 +62,12 @@ EXPOSE 22
 EXPOSE 5900
 EXPOSE 8888
 EXPOSE 6006
+EXPOSE 8889
+EXPOSE 9000
+EXPOSE 9001
+EXPOSE 9002
+EXPOSE 9003
+EXPOSE 9004
 
 # Start xdm and ssh services.
 CMD ["/bin/bash", "/src/startup.sh"]
